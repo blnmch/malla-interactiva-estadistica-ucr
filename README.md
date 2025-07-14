@@ -1,1 +1,0 @@
-# malla-interactiva-estadistica-ucr
