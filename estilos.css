@@ -1,307 +1,171 @@
-:root {
-    --primary: #A8D8EA;
-    --secondary: #F5CCE8;
-    --accent: #C6F8E5;
-    --dark: #364F6B;
-    --light: #F9F9F9;
-    --success: #A7E9AF;
-    --warning: #F7D794;
-    --text: #333333;
-    --border-radius: 8px;
-    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
+/* Estilos generales */
 body {
-    background-color: #FAFAFA;
-    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
+    color: #333;
+    background-color: #f9f7f7;
+    margin: 0;
+    padding: 20px;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-header {
-    background-color: var(--primary);
-    color: var(--dark);
-    padding: 25px;
-    border-radius: var(--border-radius);
-    margin-bottom: 30px;
-    box-shadow: var(--box-shadow);
+h1, h2, h3 {
+    color: #3f72af;
 }
 
-header h1 {
-    font-weight: 600;
+h1 {
+    text-align: center;
     margin-bottom: 5px;
+    color: #112d4e;
 }
 
-header h2 {
-    font-weight: 400;
-    font-size: 18px;
-    margin-bottom: 20px;
+.subtitle {
+    text-align: center;
+    color: #3f72af;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 1.1em;
 }
 
-.controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 15px;
+.info-box {
+    background-color: #dbe2ef;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border-left: 5px solid #3f72af;
 }
 
-.info-note {
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 10px;
-    border-radius: var(--border-radius);
-    font-size: 14px;
-    margin-top: 15px;
+.total-credits {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 1.1em;
 }
 
-.info-note i {
-    margin-right: 5px;
-    color: var(--dark);
-}
-
-.progress-container {
-    flex-grow: 1;
-    background-color: white;
-    border-radius: var(--border-radius);
-    height: 30px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: var(--box-shadow);
-}
-
-.progress-bar {
-    height: 100%;
-    background-color: var(--success);
-    width: 0%;
-    transition: width 0.5s ease;
-}
-
-#progress-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--dark);
-}
-
-#reset-btn {
-    background-color: var(--secondary);
-    color: var(--dark);
-    border: none;
-    padding: 8px 15px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.3s;
-    box-shadow: var(--box-shadow);
-}
-
-#reset-btn:hover {
-    background-color: #E8B8D8;
-    transform: translateY(-2px);
-}
-
-.semesters-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.semester {
-    background-color: white;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-}
-
-.semester-header {
-    background-color: var(--secondary);
-    color: var(--dark);
-    padding: 12px 20px;
-    font-weight: 500;
-    font-size: 18px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.semester-credits {
-    font-weight: 400;
-    font-size: 14px;
-}
-
-.courses-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 15px;
+/* Estilos para años y ciclos */
+.year-container {
+    margin-bottom: 40px;
+    background-color: #f0f4f8;
     padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.year-container h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3f72af;
+}
+
+.cycle-container {
+    margin-bottom: 30px;
+}
+
+.cycle-container h3 {
+    margin-bottom: 15px;
+    color: #112d4e;
+    font-size: 1.2em;
+}
+
+.subtotal {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #3f72af;
+}
+
+/* Estilos para los cursos */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
 }
 
 .course {
-    background-color: var(--light);
-    border-radius: var(--border-radius);
+    background-color: #fff;
+    border-radius: 8px;
     padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #dbe2ef;
     position: relative;
-    transition: all 0.3s;
-    border-left: 4px solid var(--primary);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
 }
 
 .course:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-.course.locked {
-    background-color: #F0F0F0;
-    border-left-color: #CCCCCC;
-}
-
-.course.locked .course-name,
-.course.locked .course-code {
-    opacity: 0.6;
-}
-
-.course.completed {
-    background-color: var(--success);
-    border-left-color: #7AB893;
-}
-
-.course.completed .course-name {
-    text-decoration: line-through;
-    color: #2E7D32;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .course-code {
-    font-weight: 600;
-    color: var(--dark);
+    font-weight: bold;
+    color: #112d4e;
     margin-bottom: 5px;
-    font-size: 14px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.course-credits {
-    font-weight: 500;
-    font-size: 13px;
-    color: #555;
+    font-size: 1.1em;
 }
 
 .course-name {
-    font-weight: 500;
-    margin-bottom: 10px;
-    font-size: 15px;
+    color: #333;
+    font-size: 0.9em;
 }
 
-.course-hours {
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+/* Estados de los cursos */
+.course.locked {
+    background-color: #f0f0f0;
+    color: #999;
+    cursor: not-allowed;
 }
 
-.hour-item {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-}
-
-.hour-item i {
-    font-size: 11px;
-}
-
-.course-requirements {
-    font-size: 11px;
-    color: #777;
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px dashed #DDD;
-}
-
-.course-toggle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.lock-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.course.locked .course-code,
+.course.locked .course-name {
     color: #999;
 }
 
-.optatives-section {
-    margin-top: 40px;
+.course.completed {
+    background-color: #e8f5e9;
+    border-color: #a5d6a7;
 }
 
-.optatives-section h3 {
-    color: var(--dark);
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-    border-bottom: 2px solid var(--secondary);
+.course.completed .course-code,
+.course.completed .course-name {
+    text-decoration: line-through;
+    color: #2e7d32;
 }
 
-.optatives-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 15px;
+.course.completed::after {
+    content: "✓";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #2e7d32;
+    font-weight: bold;
 }
 
-footer {
-    text-align: center;
-    margin-top: 50px;
-    padding: 20px;
-    color: #777;
-    font-size: 14px;
+/* Cursos optativos */
+.course.elective {
+    background-color: #e3f2fd;
+    border-color: #90caf9;
 }
 
-.update-info {
-    font-size: 12px;
-    margin-top: 5px;
-    color: #999;
+.course.elective .course-code {
+    color: #0d47a1;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
-    .courses-container, .optatives-container {
+    .courses-grid {
         grid-template-columns: 1fr;
     }
     
-    .controls {
-        flex-direction: column;
-    }
-    
-    #reset-btn {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .semester-header {
-        flex-direction: column;
-        gap: 5px;
+    .container {
+        padding: 10px;
     }
 }
