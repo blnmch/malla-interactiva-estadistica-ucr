@@ -1,17 +1,35 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malla Curricular - Bachillerato en Estadística</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
     <header>
-        <h1>Plan de Estudios</h1>
-        <div class="progress-container">
-            <div class="progress-bar" id="progress-bar"></div>
-            <span id="progress-text">0% completado</span>
+        <h1>Malla Curricular Interactiva</h1>
+        <h2>Bachillerato en Estadística</h2>
+        <div class="controls">
+            <button id="reset-btn">Reiniciar Progreso</button>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+                <span id="progress-text">0% completado</span>
+            </div>
         </div>
     </header>
 
-    <div class="semesters-container" id="semesters-container">
-        <!-- Los semestres se generarán automáticamente aquí -->
-    </div>
+    <main>
+        <div class="semesters-container">
+            <!-- Los semestres se generarán dinámicamente con JavaScript -->
+        </div>
+    </main>
 
-    <div class="notes">
-        <p>Nota: Requisitos de graduación según el plan de estudios.</p>
-    </div>
-</div>
+    <footer>
+        <p>© 2025 Malla Interactiva - Bachillerato en Estadística</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
