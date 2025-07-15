@@ -1,269 +1,47 @@
 :root {
-    --primary-color: #4a6baf;
-    --primary-light: #7d9fd9;
-    --primary-dark: #2c4373;
-    --secondary-color: #f5f5f5;
-    --text-color: #333;
-    --text-light: #666;
-    --border-color: #ddd;
-    --completed-color: #4caf50;
-    --unlocked-color: #ff9800;
-    --locked-color: #e0e0e0;
-    --hover-color: #e3f2fd;
-    --optative-color: #9c27b0;
-    --humanities-color: #3f51b5;
-    --math-color: #f44336;
-    --stats-color: #009688;
-    --english-color: #795548;
-    --seminar-color: #607d8b;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: #f9f9f9;
-    padding: 20px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-color);
-}
-
-h1 {
-    color: var(--primary-dark);
-    margin-bottom: 5px;
-}
-
-h2 {
-    color: var(--primary-color);
-    margin: 20px 0 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    --primary-color: #6a8fd8;
+    --progress-bg: #f0f4ff;
+    --completed-color: #88c9a1;
+    --unlocked-color: #ffd166;
+    --locked-color: #f0f0f0;
+    --humanities-color: #b8d8d8;
+    --math-color: #ffb3ba;
+    --stats-color: #bae1ff;
+    --english-color: #fdfd96;
+    --seminar-color: #c7c7f3;
+    --optative-color: #d4a5d4;
 }
 
 .progress-container {
-    margin-top: 20px;
-    background-color: var(--secondary-color);
-    border-radius: 20px;
-    height: 20px;
-    position: relative;
+    background-color: var(--progress-bg);
 }
 
 .progress-bar {
     background-color: var(--primary-color);
-    border-radius: 20px;
-    height: 100%;
-    width: 0%;
-    transition: width 0.5s ease;
 }
-
-#progress-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-weight: 500;
-    font-size: 12px;
-}
-
-.semesters-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.semester {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 0;
-    border: 1px solid var(--border-color);
-}
-
-.semester-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 12px 15px;
-    border-radius: 8px 8px 0 0;
-    font-weight: 500;
-    font-size: 1.1rem;
-}
-
-.courses-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 10px;
-    padding: 15px;
-}
-
-.curso {
-    padding: 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid var(--border-color);
-    position: relative;
-    background-color: white;
-}
-
-/* Colores por tipo de curso */
-.curso[data-code^="EG-"] { background-color: var(--humanities-color); color: white; }
-.curso[data-code^="MA-"] { background-color: var(--math-color); color: white; }
-.curso[data-code^="XS-"] { background-color: var(--stats-color); color: white; }
-.curso[data-code^="LM-"] { background-color: var(--english-color); color: white; }
-.curso[data-code^="SR-"] { background-color: var(--seminar-color); color: white; }
-.curso[data-code^="OPT"] { background-color: var(--optative-color); color: white; }
 
 .curso.completed {
-    opacity: 0.8;
-    position: relative;
-}
-
-.curso.completed::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: white;
-    transform: rotate(-5deg);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.curso.completed.active::after {
-    opacity: 1;
+    background-color: var(--completed-color);
+    text-decoration: line-through;
 }
 
 .curso.unlocked {
-    box-shadow: 0 0 0 2px var(--unlocked-color);
+    background-color: var(--unlocked-color);
 }
 
 .curso.locked {
     background-color: var(--locked-color);
-    color: var(--text-light);
-    cursor: not-allowed;
-    opacity: 0.6;
 }
 
-.curso:hover:not(.locked) {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.curso:active:not(.locked) {
-    transform: scale(0.95) translateY(-3px);
-}
-
-.curso-code {
-    font-weight: 500;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.curso-name {
-    font-size: 13px;
-    margin-bottom: 5px;
-}
-
-.curso-credits {
-    font-size: 11px;
-    background-color: rgba(255, 255, 255, 0.3);
-    padding: 2px 8px;
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-.curso-requisitos {
-    font-size: 11px;
-    margin-top: 8px;
-    padding-top: 5px;
-    border-top: 1px dashed rgba(255, 255, 255, 0.5);
-}
+/* Colores pasteles por tipo de curso */
+.curso[data-code^="EG-"] { background-color: var(--humanities-color); }
+.curso[data-code^="MA-"] { background-color: var(--math-color); }
+.curso[data-code^="XS-"] { background-color: var(--stats-color); }
+.curso[data-code^="LM-"] { background-color: var(--english-color); }
+.curso[data-code^="SR-"] { background-color: var(--seminar-color); }
+.curso[data-code^="OPT"] { background-color: var(--optative-color); }
 
 .optatives-section {
-    margin-top: 40px;
-    padding: 20px;
-    background-color: #f3e5f5;
-    border-radius: 8px;
-    border: 1px solid var(--optative-color);
-}
-
-.optatives-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.curso.optativo {
-    background-color: #e1bee7;
-    border-left: 4px solid var(--optative-color);
-}
-
-.notes {
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    font-size: 14px;
-    color: var(--text-light);
-}
-
-.tooltip {
-    position: relative;
-    display: inline-block;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 200px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -100px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
-
-@media (max-width: 768px) {
-    .courses-list, .optatives-container {
-        grid-template-columns: 1fr;
-    }
+    background-color: #f8f0ff;
+    border: 1px solid #d4a5d4;
 }
