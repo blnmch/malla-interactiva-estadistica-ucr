@@ -191,3 +191,24 @@ h2 {
         grid-template-columns: 1fr;
     }
 }
+
+/* Estilos para la sección de optativos */
+.optatives-section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    border: 1px solid var(--primary-light);
+}
+
+.optatives-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.curso.optativo {
+    background-color: #e6f7ff;
+    border-left: 4px solid var(--primary-color);
+}
