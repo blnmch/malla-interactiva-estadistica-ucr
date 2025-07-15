@@ -1,13 +1,13 @@
 :root {
-    --primary: #B8D8D8;
-    --secondary: #D9B8D8;
-    --accent: #D8D8B8;
-    --dark: #4A4A4A;
-    --light: #F8F8F8;
-    --success: #B8D8C0;
-    --warning: #D8C8B8;
+    --primary: #A8D8EA;
+    --secondary: #F5CCE8;
+    --accent: #C6F8E5;
+    --dark: #364F6B;
+    --light: #F9F9F9;
+    --success: #A7E9AF;
+    --warning: #F7D794;
     --text: #333333;
-    --border-radius: 10px;
+    --border-radius: 8px;
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -19,7 +19,7 @@
 }
 
 body {
-    background-color: #F5F5F5;
+    background-color: #FAFAFA;
     color: var(--text);
     line-height: 1.6;
 }
@@ -32,17 +32,22 @@ body {
 
 header {
     background-color: var(--primary);
-    padding: 20px;
+    color: var(--dark);
+    padding: 25px;
     border-radius: var(--border-radius);
     margin-bottom: 30px;
     box-shadow: var(--box-shadow);
-    text-align: center;
 }
 
 header h1 {
     font-weight: 600;
-    color: var(--dark);
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+}
+
+header h2 {
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 20px;
 }
 
 .controls {
@@ -51,6 +56,20 @@ header h1 {
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
+    margin-bottom: 15px;
+}
+
+.info-note {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.info-note i {
+    margin-right: 5px;
+    color: var(--dark);
 }
 
 .progress-container {
@@ -96,14 +115,14 @@ header h1 {
 }
 
 #reset-btn:hover {
-    background-color: #CFA8CF;
+    background-color: #E8B8D8;
     transform: translateY(-2px);
 }
 
 .semesters-container {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 30px;
 }
 
 .semester {
@@ -116,9 +135,16 @@ header h1 {
 .semester-header {
     background-color: var(--secondary);
     color: var(--dark);
-    padding: 10px 20px;
+    padding: 12px 20px;
     font-weight: 500;
     font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.semester-credits {
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .courses-container {
@@ -168,6 +194,14 @@ header h1 {
     color: var(--dark);
     margin-bottom: 5px;
     font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.course-credits {
+    font-weight: 500;
+    font-size: 13px;
+    color: #555;
 }
 
 .course-name {
@@ -176,16 +210,22 @@ header h1 {
     font-size: 15px;
 }
 
-.course-details {
+.course-hours {
     font-size: 12px;
     color: #666;
     margin-bottom: 5px;
     display: flex;
-    align-items: center;
-    gap: 5px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.course-details i {
+.hour-item {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.hour-item i {
     font-size: 11px;
 }
 
@@ -215,16 +255,39 @@ header h1 {
     color: #999;
 }
 
+.optatives-section {
+    margin-top: 40px;
+}
+
+.optatives-section h3 {
+    color: var(--dark);
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--secondary);
+}
+
+.optatives-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
 footer {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 50px;
     padding: 20px;
     color: #777;
     font-size: 14px;
 }
 
+.update-info {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #999;
+}
+
 @media (max-width: 768px) {
-    .courses-container {
+    .courses-container, .optatives-container {
         grid-template-columns: 1fr;
     }
     
@@ -235,5 +298,10 @@ footer {
     #reset-btn {
         width: 100%;
         justify-content: center;
+    }
+    
+    .semester-header {
+        flex-direction: column;
+        gap: 5px;
     }
 }
