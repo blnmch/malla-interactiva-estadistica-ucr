@@ -1,47 +1,69 @@
 :root {
-    --primary-color: #6a8fd8;
-    --progress-bg: #f0f4ff;
-    --completed-color: #88c9a1;
-    --unlocked-color: #ffd166;
-    --locked-color: #f0f0f0;
-    --humanities-color: #b8d8d8;
-    --math-color: #ffb3ba;
-    --stats-color: #bae1ff;
-    --english-color: #fdfd96;
-    --seminar-color: #c7c7f3;
-    --optative-color: #d4a5d4;
+    --semester-bg: #f8f9fa;
+    --semester-header: #a5d8ff;
+    --course-bg: #ffffff;
+    --course-border: #dee2e6;
+    --completed-course: #b2f2bb;
+    --text-color: #212529;
 }
 
-.progress-container {
-    background-color: var(--progress-bg);
+.semesters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.progress-bar {
-    background-color: var(--primary-color);
+.semester {
+    background-color: var(--semester-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.semester-header {
+    background-color: var(--semester-header);
+    color: var(--text-color);
+    padding: 12px 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.courses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+}
+
+.curso {
+    background-color: var(--course-bg);
+    border: 1px solid var(--course-border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .curso.completed {
-    background-color: var(--completed-color);
+    background-color: var(--completed-course);
     text-decoration: line-through;
 }
 
-.curso.unlocked {
-    background-color: var(--unlocked-color);
+.curso:hover:not(.completed) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.curso.locked {
-    background-color: var(--locked-color);
+.curso-credits {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 4px;
 }
 
-/* Colores pasteles por tipo de curso */
-.curso[data-code^="EG-"] { background-color: var(--humanities-color); }
-.curso[data-code^="MA-"] { background-color: var(--math-color); }
-.curso[data-code^="XS-"] { background-color: var(--stats-color); }
-.curso[data-code^="LM-"] { background-color: var(--english-color); }
-.curso[data-code^="SR-"] { background-color: var(--seminar-color); }
-.curso[data-code^="OPT"] { background-color: var(--optative-color); }
-
-.optatives-section {
-    background-color: #f8f0ff;
-    border: 1px solid #d4a5d4;
-}
+/* Colores pasteles para diferentes tipos de cursos */
+.curso[data-code^="MA-"] { background-color: #ffd6a5; }
+.curso[data-code^="XS-"] { background-color: #caffbf; }
+.curso[data-code^="LM-"] { background-color: #fdffb6; }
+.curso[data-code^="EG-"] { background-color: #bdb2ff; }
+.curso[data-code^="SR-"] { background-color: #ffc6ff; }
+.curso[data-code^="OPT"] { background-color: #a0c4ff; }
