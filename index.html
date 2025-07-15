@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Curricular - Enfermería</title>
+    <title>Malla Curricular - Bachillerato en Estadística</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -11,24 +11,36 @@
 <body>
     <div class="container">
         <header>
-            <h1>Malla Curricular de Enfermería</h1>
+            <h1>Malla Curricular de Bachillerato en Estadística</h1>
+            <h2>Código 330402 - Plan 02</h2>
             <div class="controls">
                 <div class="progress-container">
                     <div class="progress-bar" id="progress-bar"></div>
                     <span id="progress-text">0% completado</span>
                 </div>
-                <button id="reset-btn"><i class="fas fa-undo"></i> Reiniciar</button>
+                <button id="reset-btn"><i class="fas fa-undo"></i> Reiniciar Progreso</button>
+            </div>
+            <div class="info-note">
+                <p><i class="fas fa-info-circle"></i> El estudiantado debe cumplir con 300 horas de Trabajo Comunal Universitario para optar por el título de Bachiller.</p>
             </div>
         </header>
 
         <main>
             <div class="semesters-container">
-                <!-- Semestres se generarán dinámicamente -->
+                <!-- Los ciclos se generarán dinámicamente -->
             </div>
         </main>
 
+        <div class="optatives-section">
+            <h3>Cursos Optativos</h3>
+            <div class="optatives-container" id="optatives-container">
+                <!-- Los optativos se generarán dinámicamente -->
+            </div>
+        </div>
+
         <footer>
-            <p>© 2025 Malla Interactiva - Escuela de Enfermería</p>
+            <p>© 2025 Malla Interactiva - Escuela de Estadística</p>
+            <p class="update-info">Actualizado 13/05/2025 por RMMZ</p>
         </footer>
     </div>
 
