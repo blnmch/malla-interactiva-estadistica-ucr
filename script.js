@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coursesList.className = 'courses-list';
             
             ciclo.cursos.forEach(curso => {
-                createCourseElement(curso, coursesList);
+                createCourseElement(curso, coursesList, false);
             });
             
             cicloElement.appendChild(coursesList);
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Crear elemento de curso
-    function createCourseElement(curso, container, isOptativo = false) {
+    function createCourseElement(curso, container, isOptativo) {
         const cursoElement = document.createElement('div');
         let cursoClass = 'curso';
         
@@ -175,14 +175,13 @@ document.addEventListener('DOMContentLoaded', function() {
         cursoElement.className = cursoClass;
         cursoElement.setAttribute('data-code', curso.codigo);
         
-        // Construir tooltip con requisitos y correquisitos
-        let tooltipText = '';
+        // Construir información de requisitos
+        let requisitosHTML = '';
         if (curso.requisitos.length > 0) {
-            tooltipText += `Requisitos: ${curso.requisitos.join(', ')}`;
+            requisitosHTML = `<div class="curso-requisitos">Requisitos: ${curso.requisitos.join(', ')}</div>`;
         }
         if (curso.correquisitos.length > 0) {
-            if (tooltipText) tooltipText += '\n';
-            tooltipText += `Correquisitos: ${curso.correquisitos.join(', ')}`;
+            requisitosHTML += `<div class="curso-requisitos">Correquisitos: ${curso.correquisitos.join(', ')}</div>`;
         }
         
         cursoElement.innerHTML = `
@@ -191,22 +190,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span class="curso-credits">${curso.creditos} créditos</span>
             </div>
             <div class="curso-name">${curso.nombre}</div>
-            ${tooltipText ? `<div class="tooltip">ℹ<span class="tooltiptext">${tooltipText}</span></div>` : ''}
+            ${requisitosHTML}
         `;
         
         // Agregar evento de click
         if (!cursoElement.classList.contains('locked')) {
             cursoElement.addEventListener('click', function() {
                 toggleCourseCompletion(curso.codigo);
-                
-                // Efecto visual de salto
-                this.style.transform = 'translateY(-10px)';
-                setTimeout(() => {
-                    this.style.transform = 'translateY(0)';
-                }, 300);
-                
-                // Efecto de tachado
-                this.classList.add('active');
+                this.classList.toggle('completed');
             });
         }
         
