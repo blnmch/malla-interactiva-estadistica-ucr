@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Datos completos del plan de estudios basado en el Excel
+    // DATOS COMPLETOS DEL PLAN DE ESTUDIOS (8 CICLOS + OPTATIVAS)
     const planEstudios = {
         ciclos: [
             {
-                nombre: "I CICLO",
+                nombre: "I SEMESTRE",
                 cursos: [
                     { codigo: "EG-", nombre: "CURSO DE ARTE", creditos: 2, requisitos: [], correquisitos: [] },
                     { codigo: "EG-I", nombre: "CURSO INTEGRADO DE HUMANIDADES I", creditos: 6, requisitos: [], correquisitos: [] },
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ]
             },
             {
-                nombre: "II CICLO",
+                nombre: "II SEMESTRE",
                 cursos: [
                     { codigo: "EF-", nombre: "ACTIVIDAD DEPORTIVA", creditos: 0, requisitos: [], correquisitos: [] },
                     { codigo: "EG-II", nombre: "CURSO INTEGRADO DE HUMANIDADES II", creditos: 6, requisitos: ["EG-I"], correquisitos: [] },
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ]
             },
             {
-                nombre: "III CICLO",
+                nombre: "III SEMESTRE",
                 cursos: [
                     { codigo: "MA-1023", nombre: "CÁLCULO CON OPTIMIZACIÓN", creditos: 4, requisitos: ["MA-0155"], correquisitos: ["MA-1004"] },
                     { codigo: "SR-I", nombre: "SEMINARIO DE REALIDAD NACIONAL I", creditos: 2, requisitos: ["EG-II"], correquisitos: [] },
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ]
             },
             {
-                nombre: "IV CICLO",
+                nombre: "IV SEMESTRE",
                 cursos: [
                     { codigo: "LM-3039", nombre: "INGLÉS PARA ESTADÍSTICA I", creditos: 3, requisitos: ["XS-1130"], correquisitos: [] },
                     { codigo: "XS-0123", nombre: "MODELOS PROBABILÍSTICOS II", creditos: 4, requisitos: ["MA-1023", "XS-0122"], correquisitos: [] },
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ]
             },
             {
-                nombre: "V CICLO",
+                nombre: "V SEMESTRE",
                 cursos: [
                     { codigo: "LM-3040", nombre: "INGLÉS PARA ESTADÍSTICA II", creditos: 3, requisitos: ["LM-3039"], correquisitos: [] },
                     { codigo: "XS-0125", nombre: "MODELOS LINEALES AVANZADOS", creditos: 4, requisitos: ["XS-0123", "XS-2130", "XS-3150"], correquisitos: [] },
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ]
             },
             {
-                nombre: "VI CICLO",
+                nombre: "VI SEMESTRE",
                 cursos: [
                     { codigo: "LM-3041", nombre: "INGLÉS PARA ESTADÍSTICA III", creditos: 3, requisitos: ["LM-3040", "XS-2130"], correquisitos: [] },
                     { codigo: "XS-0126", nombre: "MINERÍA DE DATOS Y ANÁLISIS MULTIVARIADO", creditos: 4, requisitos: ["XS-0130", "XS-0123", "XS-2130"], correquisitos: [] },
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ]
             },
             {
-                nombre: "VII CICLO",
+                nombre: "VII SEMESTRE",
                 cursos: [
                     { codigo: "SR-II", nombre: "SEMINARIO DE REALIDAD NACIONAL II", creditos: 2, requisitos: ["SR-I"], correquisitos: [] },
                     { codigo: "LM-3042", nombre: "INGLÉS PARA ESTADÍSTICA IV", creditos: 3, requisitos: ["LM-3041"], correquisitos: [] },
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ]
             },
             {
-                nombre: "VIII CICLO",
+                nombre: "VIII SEMESTRE",
                 cursos: [
                     { codigo: "XS-4430", nombre: "PRÁCTICA PROFESIONAL II", creditos: 4, requisitos: ["XS-0128", "XS-0134", "XS-4410"], correquisitos: ["XS-0127", "XS-0132"] },
                     { codigo: "XS-0132", nombre: "MÉTODOS PARA CIENCIA DE DATOS", creditos: 4, requisitos: ["XS-0126"], correquisitos: [] },
@@ -117,10 +117,10 @@ document.addEventListener('DOMContentLoaded', function() {
         ]
     };
 
-    // Estado de los cursos completados
+    // Estado de cursos completados
     let completedCourses = JSON.parse(localStorage.getItem('completedCourses')) || [];
     
-    // Renderizar todos los ciclos
+    // Renderizar todos los ciclos (ESTILO VERTICAL)
     function renderAllCourses() {
         const container = document.getElementById('semesters-container');
         container.innerHTML = '';
@@ -138,7 +138,38 @@ document.addEventListener('DOMContentLoaded', function() {
             coursesList.className = 'courses-list';
             
             ciclo.cursos.forEach(curso => {
-                createCourseElement(curso, coursesList, false);
+                const courseElement = document.createElement('div');
+                courseElement.className = 'course-card';
+                
+                // Asignar color según tipo de curso
+                let cardColor = '';
+                if (curso.codigo.startsWith('MA-')) cardColor = 'math-card';
+                else if (curso.codigo.startsWith('XS-')) cardColor = 'stats-card';
+                else if (curso.codigo.startsWith('LM-')) cardColor = 'english-card';
+                else if (curso.codigo.startsWith('EG-') || curso.codigo.startsWith('SR-')) cardColor = 'humanities-card';
+                else if (curso.codigo.startsWith('OPT')) cardColor = 'optative-card';
+                else cardColor = 'default-card';
+                
+                courseElement.className = `course-card ${cardColor} ${completedCourses.includes(curso.codigo) ? 'completed' : ''}`;
+                
+                courseElement.innerHTML = `
+                    <div class="course-name">${curso.nombre}</div>
+                    <div class="course-footer">
+                        <span class="course-code">${curso.codigo}</span>
+                        <span class="course-credits">${curso.creditos} créditos</span>
+                    </div>
+                    ${curso.requisitos.length > 0 ? 
+                        `<div class="course-req">Requisitos: ${curso.requisitos.join(', ')}</div>` : ''}
+                    ${curso.correquisitos.length > 0 ? 
+                        `<div class="course-req">Correquisitos: ${curso.correquisitos.join(', ')}</div>` : ''}
+                `;
+                
+                courseElement.addEventListener('click', function() {
+                    toggleCourseCompletion(curso.codigo);
+                    this.classList.toggle('completed');
+                });
+                
+                coursesList.appendChild(courseElement);
             });
             
             cicloElement.appendChild(coursesList);
@@ -147,105 +178,66 @@ document.addEventListener('DOMContentLoaded', function() {
         
         updateProgress();
     }
-    
-    // Crear elemento de curso
-    function createCourseElement(curso, container, isOptativo) {
-        const cursoElement = document.createElement('div');
-        let cursoClass = 'curso';
+
+    // Renderizar TODAS LAS OPTATIVAS
+    function renderOptatives() {
+        const container = document.getElementById('optatives-container');
+        container.innerHTML = '<h3>Cursos Optativos Disponibles</h3>';
         
-        if (isOptativo) {
-            cursoClass += ' optativo';
-        }
+        const optativesGrid = document.createElement('div');
+        optativesGrid.className = 'optatives-grid';
         
-        // Verificar si el curso está completado
-        const isCompleted = completedCourses.includes(curso.codigo);
-        
-        // Verificar requisitos para determinar si está bloqueado
-        const allReqsMet = curso.requisitos.every(req => completedCourses.includes(req));
-        const isUnlocked = curso.requisitos.length === 0 || allReqsMet;
-        
-        if (isCompleted) {
-            cursoClass += ' completed';
-        } else if (isUnlocked) {
-            cursoClass += ' unlocked';
-        } else {
-            cursoClass += ' locked';
-        }
-        
-        cursoElement.className = cursoClass;
-        cursoElement.setAttribute('data-code', curso.codigo);
-        
-        // Construir información de requisitos
-        let requisitosHTML = '';
-        if (curso.requisitos.length > 0) {
-            requisitosHTML = `<div class="curso-requisitos">Requisitos: ${curso.requisitos.join(', ')}</div>`;
-        }
-        if (curso.correquisitos.length > 0) {
-            requisitosHTML += `<div class="curso-requisitos">Correquisitos: ${curso.correquisitos.join(', ')}</div>`;
-        }
-        
-        cursoElement.innerHTML = `
-            <div class="curso-code">
-                <span>${curso.codigo}</span>
-                <span class="curso-credits">${curso.creditos} créditos</span>
-            </div>
-            <div class="curso-name">${curso.nombre}</div>
-            ${requisitosHTML}
-        `;
-        
-        // Agregar evento de click
-        if (!cursoElement.classList.contains('locked')) {
-            cursoElement.addEventListener('click', function() {
+        planEstudios.optativos.forEach(curso => {
+            const optativeElement = document.createElement('div');
+            optativeElement.className = `course-card optative-card ${completedCourses.includes(curso.codigo) ? 'completed' : ''}`;
+            
+            optativeElement.innerHTML = `
+                <div class="course-name">${curso.nombre}</div>
+                <div class="course-footer">
+                    <span class="course-code">${curso.codigo}</span>
+                    <span class="course-credits">${curso.creditos} créditos</span>
+                </div>
+                ${curso.requisitos.length > 0 ? 
+                    `<div class="course-req">Requisitos: ${curso.requisitos.join(', ')}</div>` : ''}
+            `;
+            
+            optativeElement.addEventListener('click', function() {
                 toggleCourseCompletion(curso.codigo);
                 this.classList.toggle('completed');
             });
-        }
+            
+            optativesGrid.appendChild(optativeElement);
+        });
         
-        container.appendChild(cursoElement);
+        container.appendChild(optativesGrid);
     }
-    
+
     // Alternar estado de completado
     function toggleCourseCompletion(courseCode) {
         const index = completedCourses.indexOf(courseCode);
-        
         if (index === -1) {
             completedCourses.push(courseCode);
         } else {
             completedCourses.splice(index, 1);
         }
-        
         localStorage.setItem('completedCourses', JSON.stringify(completedCourses));
-        renderAllCourses();
-        renderOptatives();
         updateProgress();
     }
-    
-    // Renderizar optativos
-    function renderOptatives() {
-        const container = document.getElementById('optatives-container');
-        container.innerHTML = '';
-        
-        planEstudios.optativos.forEach(curso => {
-            createCourseElement(curso, container, true);
-        });
-    }
-    
+
     // Actualizar barra de progreso
     function updateProgress() {
-        // Calcular total de cursos
-        let totalCourses = 0;
-        planEstudios.ciclos.forEach(ciclo => {
-            totalCourses += ciclo.cursos.length;
-        });
+        let total = 0;
+        planEstudios.ciclos.forEach(c => total += c.cursos.length);
+        const percent = Math.round((completedCourses.length / total) * 100);
         
-        // Calcular porcentaje completado
-        const percentage = Math.round((completedCourses.length / totalCourses) * 100);
+        const progressBar = document.getElementById('progress-bar');
+        progressBar.style.width = `${percent}%`;
         
-        // Actualizar UI
-        document.getElementById('progress-bar').style.width = `${percentage}%`;
-        document.getElementById('progress-text').textContent = `${percentage}% completado`;
+        const progressText = document.getElementById('progress-text');
+        progressText.textContent = `${percent}% completado`;
+        progressText.style.color = percent > 50 ? '#fff' : '#333';
     }
-    
+
     // Inicialización
     renderAllCourses();
     renderOptatives();
