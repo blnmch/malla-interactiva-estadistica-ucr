@@ -1,244 +1,220 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // DATOS COMPLETOS DEL PLAN DE ESTUDIOS (8 CICLOS + OPTATIVAS)
-    const planEstudios = {
-        ciclos: [
-            {
-                nombre: "I SEMESTRE",
-                cursos: [
-                    { codigo: "EG-", nombre: "CURSO DE ARTE", creditos: 2, requisitos: [], correquisitos: [] },
-                    { codigo: "EG-I", nombre: "CURSO INTEGRADO DE HUMANIDADES I", creditos: 6, requisitos: [], correquisitos: [] },
-                    { codigo: "MA-0001", nombre: "PRECÁLCULO", creditos: 0, requisitos: [], correquisitos: [] },
-                    { codigo: "XS-0124", nombre: "ANÁLISIS EXPLORATORIO DE DATOS", creditos: 4, requisitos: [], correquisitos: [] },
-                    { codigo: "RP-", nombre: "REPERTORIO", creditos: 3, requisitos: [], correquisitos: [] }
-                ]
-            },
-            {
-                nombre: "II SEMESTRE",
-                cursos: [
-                    { codigo: "EF-", nombre: "ACTIVIDAD DEPORTIVA", creditos: 0, requisitos: [], correquisitos: [] },
-                    { codigo: "EG-II", nombre: "CURSO INTEGRADO DE HUMANIDADES II", creditos: 6, requisitos: ["EG-I"], correquisitos: [] },
-                    { codigo: "MA-0155", nombre: "CÁLCULO DIFERENCIAL E INTEGRAL I", creditos: 4, requisitos: ["MA-0001"], correquisitos: [] },
-                    { codigo: "MA-1004", nombre: "ÁLGEBRA LINEAL", creditos: 3, requisitos: [], correquisitos: [] },
-                    { codigo: "XS-1130", nombre: "PRINCIPIOS DE INFERENCIA ESTADÍSTICA", creditos: 4, requisitos: ["XS-0124"], correquisitos: [] }
-                ]
-            },
-            {
-                nombre: "III SEMESTRE",
-                cursos: [
-                    { codigo: "MA-1023", nombre: "CÁLCULO CON OPTIMIZACIÓN", creditos: 4, requisitos: ["MA-0155"], correquisitos: ["MA-1004"] },
-                    { codigo: "SR-I", nombre: "SEMINARIO DE REALIDAD NACIONAL I", creditos: 2, requisitos: ["EG-II"], correquisitos: [] },
-                    { codigo: "XS-0122", nombre: "MODELOS PROBABILÍSTICOS I", creditos: 4, requisitos: ["XS-1130"], correquisitos: ["MA-1023"] },
-                    { codigo: "XS-0129", nombre: "PROGRAMACIÓN PARA ESTADÍSTICA I", creditos: 4, requisitos: ["XS-0124"], correquisitos: [] },
-                    { codigo: "XS-3150", nombre: "DISEÑO DE EXPERIMENTOS", creditos: 4, requisitos: ["XS-1130"], correquisitos: ["XS-0122", "XS-0129"] }
-                ]
-            },
-            {
-                nombre: "IV SEMESTRE",
-                cursos: [
-                    { codigo: "LM-3039", nombre: "INGLÉS PARA ESTADÍSTICA I", creditos: 3, requisitos: ["XS-1130"], correquisitos: [] },
-                    { codigo: "XS-0123", nombre: "MODELOS PROBABILÍSTICOS II", creditos: 4, requisitos: ["MA-1023", "XS-0122"], correquisitos: [] },
-                    { codigo: "XS-0130", nombre: "PROGRAMACIÓN PARA ESTADÍSTICA II", creditos: 4, requisitos: ["XS-0129"], correquisitos: [] },
-                    { codigo: "XS-2130", nombre: "MODELOS DE REGRESIÓN APLICADOS", creditos: 4, requisitos: ["XS-0122", "XS-0129", "XS-3150"], correquisitos: [] },
-                    { codigo: "XS-3510", nombre: "METODOLOGÍA DE LA INVESTIGACIÓN CIENTÍFICA", creditos: 3, requisitos: ["XS-3150"], correquisitos: [] }
-                ]
-            },
-            {
-                nombre: "V SEMESTRE",
-                cursos: [
-                    { codigo: "LM-3040", nombre: "INGLÉS PARA ESTADÍSTICA II", creditos: 3, requisitos: ["LM-3039"], correquisitos: [] },
-                    { codigo: "XS-0125", nombre: "MODELOS LINEALES AVANZADOS", creditos: 4, requisitos: ["XS-0123", "XS-2130", "XS-3150"], correquisitos: [] },
-                    { codigo: "XS-0133", nombre: "INTRODUCCIÓN A LA DEMOGRAFÍA Y BIOESTADÍSTICA", creditos: 3, requisitos: ["XS-2130"], correquisitos: [] },
-                    { codigo: "XS-3110", nombre: "DISEÑOS DE MUESTREO PROBABILÍSTICO", creditos: 4, requisitos: ["XS-0123", "XS-0129", "XS-3510"], correquisitos: [] },
-                    { codigo: "XS-3310", nombre: "TEORÍA ESTADÍSTICA", creditos: 4, requisitos: ["XS-0123"], correquisitos: [] }
-                ]
-            },
-            {
-                nombre: "VI SEMESTRE",
-                cursos: [
-                    { codigo: "LM-3041", nombre: "INGLÉS PARA ESTADÍSTICA III", creditos: 3, requisitos: ["LM-3040", "XS-2130"], correquisitos: [] },
-                    { codigo: "XS-0126", nombre: "MINERÍA DE DATOS Y ANÁLISIS MULTIVARIADO", creditos: 4, requisitos: ["XS-0130", "XS-0123", "XS-2130"], correquisitos: [] },
-                    { codigo: "XS-0131", nombre: "GESTIÓN DE BASES DE DATOS Y ANÁLISIS DE INFORMACIÓN", creditos: 4, requisitos: ["XS-0130"], correquisitos: [] },
-                    { codigo: "XS-3130", nombre: "DISEÑO Y EJECUCIÓN DE ENCUESTAS POR MUESTREO", creditos: 4, requisitos: ["XS-3110"], correquisitos: ["XS-4050"] },
-                    { codigo: "XS-4050", nombre: "TÉCNICAS DE MEDICIÓN PARA ESTADÍSTICA", creditos: 3, requisitos: ["XS-0130", "XS-0123", "XS-2130"], correquisitos: ["XS-0126"] }
-                ]
-            },
-            {
-                nombre: "VII SEMESTRE",
-                cursos: [
-                    { codigo: "SR-II", nombre: "SEMINARIO DE REALIDAD NACIONAL II", creditos: 2, requisitos: ["SR-I"], correquisitos: [] },
-                    { codigo: "LM-3042", nombre: "INGLÉS PARA ESTADÍSTICA IV", creditos: 3, requisitos: ["LM-3041"], correquisitos: [] },
-                    { codigo: "OPT-", nombre: "OPTATIVO", creditos: 3, requisitos: [], correquisitos: [] },
-                    { codigo: "XS-0128", nombre: "INFERENCIA BAYESIANA", creditos: 4, requisitos: ["XS-0125", "XS-0130", "XS-3310"], correquisitos: [] },
-                    { codigo: "XS-0134", nombre: "CONSTRUCCIÓN DE INDICADORES", creditos: 3, requisitos: ["XS-0125", "XS-0126", "XS-0133", "XS-3130", "XS-4050"], correquisitos: [] },
-                    { codigo: "XS-4410", nombre: "PRÁCTICA PROFESIONAL I", creditos: 3, requisitos: ["XS-0125", "XS-0126", "XS-0131", "XS-0133", "XS-3130", "XS-3310", "XS-4050"], correquisitos: ["XS-0134"] }
-                ]
-            },
-            {
-                nombre: "VIII SEMESTRE",
-                cursos: [
-                    { codigo: "XS-4430", nombre: "PRÁCTICA PROFESIONAL II", creditos: 4, requisitos: ["XS-0128", "XS-0134", "XS-4410"], correquisitos: ["XS-0127", "XS-0132"] },
-                    { codigo: "XS-0132", nombre: "MÉTODOS PARA CIENCIA DE DATOS", creditos: 4, requisitos: ["XS-0126"], correquisitos: [] },
-                    { codigo: "XS-0127", nombre: "ANÁLISIS DE SERIES TEMPORALES", creditos: 4, requisitos: ["XS-0126", "XS-3310"], correquisitos: [] },
-                    { codigo: "OPT-", nombre: "OPTATIVO", creditos: 6, requisitos: [], correquisitos: [] }
-                ]
-            }
-        ],
-        optativos: [
-            { codigo: "CA-0101", nombre: "INTRODUCCIÓN A CIENCIAS ACTUARIALES", creditos: 2, requisitos: [] },
-            { codigo: "CC-0009", nombre: "SEMINARIO DE COMUNICACIÓN BÁSICA PARA OTRAS CARRERAS", creditos: 3, requisitos: [] },
-            { codigo: "CI-0202", nombre: "PRINCIPIOS DE INFORMÁTICA", creditos: 4, requisitos: ["MA-0001"] },
-            { codigo: "CP-0215", nombre: "TEORÍA DEL PODER", creditos: 3, requisitos: [] },
-            { codigo: "CP-1000", nombre: "ÉTICA Y POLÍTICA", creditos: 3, requisitos: [] },
-            { codigo: "CP-1212", nombre: "POLÍTICA ACTUAL COSTARRICENSE", creditos: 3, requisitos: [] },
-            { codigo: "DN-0102", nombre: "APLICACIONES OFIMÁTICAS PARA LA TOMA DE DECISIONES", creditos: 3, requisitos: [] },
-            { codigo: "DN-0104", nombre: "ELEMENTOS FUNDAMENTALES DE LEGISLACIÓN EMPRESARIAL", creditos: 3, requisitos: ["XS-3510"] },
-            { codigo: "DN-0114", nombre: "COMUNICACIÓN INTERCULTURAL DE LOS NEGOCIOS", creditos: 3, requisitos: ["XS-3510"] },
-            { codigo: "DN-0171", nombre: "GESTIÓN SOSTENIBLE DE EMPRESAS", creditos: 3, requisitos: ["XS-3510"] },
-            { codigo: "DN-0304", nombre: "LIDERAZGO GERENCIAL", creditos: 3, requisitos: ["XS-3510"] },
-            { codigo: "DN-0507", nombre: "ESTRATEGIAS Y TÁCTICAS DE NEGOCIACIÓN", creditos: 3, requisitos: ["XS-3510"] },
-            { codigo: "F-2034", nombre: "LÓGICA SIMBÓLICA BÁSICA", creditos: 3, requisitos: [] },
-            { codigo: "F-2036", nombre: "LÓGICA MODAL", creditos: 3, requisitos: [] },
-            { codigo: "F-2037", nombre: "LÓGICA SIMBÓLICA AVANZADA", creditos: 3, requisitos: ["F-2034"] },
-            { codigo: "F-2334", nombre: "FILOSOFÍA DE LA CIENCIA", creditos: 3, requisitos: [] },
-            { codigo: "F-2454", nombre: "INTRODUCCIÓN A LA EPISTEMOLOGÍA", creditos: 3, requisitos: [] },
-            { codigo: "HA-1001", nombre: "HISTORIA DE LAS INSTITUCIONES DE COSTA RICA", creditos: 4, requisitos: [] },
-            { codigo: "HA-0111", nombre: "HISTORIA DE LAS MUJERES DE COSTA RICA (SIGLOS XIX-XXI)", creditos: 3, requisitos: [] },
-            { codigo: "HA-2021", nombre: "FORMACIÓN CIUDADANA I", creditos: 2, requisitos: [] },
-            { codigo: "II-0806", nombre: "METROLOGÍA Y NORMALIZACIÓN", creditos: 3, requisitos: ["XS-3150"] },
-            { codigo: "MA-0150", nombre: "PRINCIPIOS DE MATEMÁTICA", creditos: 4, requisitos: [] },
-            { codigo: "MA-0250", nombre: "CÁLCULO EN UNA VARIABLE I", creditos: 4, requisitos: ["MA-0001", "MA-0150"] },
-            { codigo: "MA-0350", nombre: "CÁLCULO EN UNA VARIABLE II", creditos: 4, requisitos: ["MA-0250"] },
-            { codigo: "PC-0200", nombre: "CONTABILIDAD BÁSICA", creditos: 4, requisitos: ["XS-3510"] },
-            { codigo: "PC-0240", nombre: "MATEMÁTICA FINANCIERA", creditos: 3, requisitos: ["XS-3510"] },
-            { codigo: "PS-0001", nombre: "PSICOLOGÍA GENERAL I", creditos: 3, requisitos: [] },
-            { codigo: "SO-1133", nombre: "SOCIOLOGÍA BÁSICA I", creditos: 3, requisitos: [] },
-            { codigo: "SO-1134", nombre: "SOCIOLOGÍA BÁSICA II", creditos: 3, requisitos: ["SO-1133"] },
-            { codigo: "XE-0156", nombre: "INTRODUCCIÓN A LA ECONOMÍA", creditos: 4, requisitos: [] }
-        ]
-    };
-
-    // Estado de cursos completados
-    let completedCourses = JSON.parse(localStorage.getItem('completedCourses')) || [];
-    
-    // Renderizar todos los ciclos (ESTILO VERTICAL)
-    function renderAllCourses() {
-        const container = document.getElementById('semesters-container');
-        container.innerHTML = '';
-        
-        planEstudios.ciclos.forEach(ciclo => {
-            const cicloElement = document.createElement('div');
-            cicloElement.className = 'semester';
-            
-            const header = document.createElement('div');
-            header.className = 'semester-header';
-            header.textContent = ciclo.nombre;
-            cicloElement.appendChild(header);
-            
-            const coursesList = document.createElement('div');
-            coursesList.className = 'courses-list';
-            
-            ciclo.cursos.forEach(curso => {
-                const courseElement = document.createElement('div');
-                courseElement.className = 'course-card';
-                
-                // Asignar color según tipo de curso
-                let cardColor = '';
-                if (curso.codigo.startsWith('MA-')) cardColor = 'math-card';
-                else if (curso.codigo.startsWith('XS-')) cardColor = 'stats-card';
-                else if (curso.codigo.startsWith('LM-')) cardColor = 'english-card';
-                else if (curso.codigo.startsWith('EG-') || curso.codigo.startsWith('SR-')) cardColor = 'humanities-card';
-                else if (curso.codigo.startsWith('OPT')) cardColor = 'optative-card';
-                else cardColor = 'default-card';
-                
-                courseElement.className = `course-card ${cardColor} ${completedCourses.includes(curso.codigo) ? 'completed' : ''}`;
-                
-                courseElement.innerHTML = `
-                    <div class="course-name">${curso.nombre}</div>
-                    <div class="course-footer">
-                        <span class="course-code">${curso.codigo}</span>
-                        <span class="course-credits">${curso.creditos} créditos</span>
-                    </div>
-                    ${curso.requisitos.length > 0 ? 
-                        `<div class="course-req">Requisitos: ${curso.requisitos.join(', ')}</div>` : ''}
-                    ${curso.correquisitos.length > 0 ? 
-                        `<div class="course-req">Correquisitos: ${curso.correquisitos.join(', ')}</div>` : ''}
-                `;
-                
-                courseElement.addEventListener('click', function() {
-                    toggleCourseCompletion(curso.codigo);
-                    this.classList.toggle('completed');
-                });
-                
-                coursesList.appendChild(courseElement);
-            });
-            
-            cicloElement.appendChild(coursesList);
-            container.appendChild(cicloElement);
-        });
-        
-        updateProgress();
-    }
-
-    // Renderizar TODAS LAS OPTATIVAS
-    function renderOptatives() {
-        const container = document.getElementById('optatives-container');
-        container.innerHTML = '<h3>Cursos Optativos Disponibles</h3>';
-        
-        const optativesGrid = document.createElement('div');
-        optativesGrid.className = 'optatives-grid';
-        
-        planEstudios.optativos.forEach(curso => {
-            const optativeElement = document.createElement('div');
-            optativeElement.className = `course-card optative-card ${completedCourses.includes(curso.codigo) ? 'completed' : ''}`;
-            
-            optativeElement.innerHTML = `
-                <div class="course-name">${curso.nombre}</div>
-                <div class="course-footer">
-                    <span class="course-code">${curso.codigo}</span>
-                    <span class="course-credits">${curso.creditos} créditos</span>
-                </div>
-                ${curso.requisitos.length > 0 ? 
-                    `<div class="course-req">Requisitos: ${curso.requisitos.join(', ')}</div>` : ''}
-            `;
-            
-            optativeElement.addEventListener('click', function() {
-                toggleCourseCompletion(curso.codigo);
-                this.classList.toggle('completed');
-            });
-            
-            optativesGrid.appendChild(optativeElement);
-        });
-        
-        container.appendChild(optativesGrid);
-    }
-
-    // Alternar estado de completado
-    function toggleCourseCompletion(courseCode) {
-        const index = completedCourses.indexOf(courseCode);
-        if (index === -1) {
-            completedCourses.push(courseCode);
-        } else {
-            completedCourses.splice(index, 1);
+    // Datos de los cursos organizados por semestre
+    const curriculumData = [
+        {
+            semester: "I CICLO",
+            courses: [
+                { code: "EG-", name: "CURSO DE ARTE", credits: 2, requirements: [] },
+                { code: "EG-I", name: "CURSO INTEGRADO DE HUMANIDADES I", credits: 6, requirements: [] },
+                { code: "MA-0001", name: "PRECÁLCULO", credits: 0, requirements: [] },
+                { code: "XS-0124", name: "ANÁLISIS EXPLORATORIO DE DATOS", credits: 4, requirements: [] },
+                { code: "RP-", name: "REPERTORIO", credits: 3, requirements: [] }
+            ]
+        },
+        {
+            semester: "II CICLO",
+            courses: [
+                { code: "EF-", name: "ACTIVIDAD DEPORTIVA", credits: 0, requirements: [] },
+                { code: "EG-II", name: "CURSO INTEGRADO DE HUMANIDADES II", credits: 6, requirements: ["EG-I"] },
+                { code: "MA-0155", name: "CÁLCULO DIFERENCIAL E INTEGRAL I", credits: 4, requirements: ["MA-0001"] },
+                { code: "MA-1004", name: "ÁLGEBRA LINEAL", credits: 3, requirements: [] },
+                { code: "XS-1130", name: "PRINCIPIOS DE INFERENCIA ESTADÍSTICA", credits: 4, requirements: ["XS-0124"] }
+            ]
+        },
+        {
+            semester: "III CICLO",
+            courses: [
+                { code: "MA-1023", name: "CÁLCULO CON OPTIMIZACIÓN", credits: 4, requirements: ["MA-1001", "MA-0213", "MA-1021", "CA-0151", "MA-0155"] },
+                { code: "SR-I", name: "SEMINARIO DE REALIDAD NACIONAL I", credits: 2, requirements: ["EG-II"] },
+                { code: "XS-0122", name: "MODELOS PROBABILÍSTICOS I", credits: 4, requirements: ["CA-0151", "MA-1021", "MA-0155", "XS-1130"] },
+                { code: "XS-0129", name: "PROGRAMACIÓN PARA ESTADÍSTICA I", credits: 4, requirements: ["XS-0124"] },
+                { code: "XS-3150", name: "DISEÑO DE EXPERIMENTOS", credits: 4, requirements: ["CA-0252", "MA-1004", "XS-1130"] }
+            ]
+        },
+        {
+            semester: "IV CICLO",
+            courses: [
+                { code: "LM-3039", name: "INGLÉS PARA ESTADÍSTICA I", credits: 3, requirements: ["XS-1130"] },
+                { code: "XS-0123", name: "MODELOS PROBABILÍSTICOS II", credits: 4, requirements: ["MA-1023", "XS-0122"] },
+                { code: "XS-0130", name: "PROGRAMACIÓN PARA ESTADÍSTICA II", credits: 4, requirements: ["XS-0129"] },
+                { code: "XS-2130", name: "MODELOS DE REGRESIÓN APLICADOS", credits: 4, requirements: ["CA-0252", "MA-1004", "XS-0122", "XS-0129", "XS-3150"] },
+                { code: "XS-3510", name: "METODOLOGÍA DE LA INVESTIGACIÓN CIENTÍFICA", credits: 3, requirements: ["XS-3150"] }
+            ]
+        },
+        {
+            semester: "V CICLO",
+            courses: [
+                { code: "LM-3040", name: "INGLÉS PARA ESTADÍSTICA II", credits: 3, requirements: ["LM-3039"] },
+                { code: "XS-0125", name: "MODELOS LINEALES AVANZADOS", credits: 4, requirements: ["XS-0123", "XS-2130", "XS-3150"] },
+                { code: "XS-0133", name: "INTRODUCCIÓN A LA DEMOGRAFÍA Y BIOESTADÍSTICA", credits: 3, requirements: ["XS-2130"] },
+                { code: "XS-3110", name: "DISEÑOS DE MUESTREO PROBABILÍSTICO", credits: 4, requirements: ["XS-0123", "XS-0129", "XS-3510"] },
+                { code: "XS-3310", name: "TEORÍA ESTADÍSTICA", credits: 4, requirements: ["XS-0123"] }
+            ]
+        },
+        {
+            semester: "VI CICLO",
+            courses: [
+                { code: "LM-3041", name: "INGLÉS PARA ESTADÍSTICA III", credits: 3, requirements: ["LM-3040", "XS-2130"] },
+                { code: "XS-0126", name: "MINERÍA DE DATOS Y ANÁLISIS MULTIVARIADO", credits: 4, requirements: ["XS-0130", "XS-0123", "XS-2130"] },
+                { code: "XS-0131", name: "GESTIÓN DE BASES DE DATOS Y ANÁLISIS DE INFORMACIÓN", credits: 4, requirements: ["XS-0130"] },
+                { code: "XS-3130", name: "DISEÑO Y EJECUCIÓN DE ENCUESTAS POR MUESTREO", credits: 4, requirements: ["XS-3110"] },
+                { code: "XS-4050", name: "TÉCNICAS DE MEDICIÓN PARA ESTADÍSTICA", credits: 3, requirements: ["XS-0130", "XS-0123", "XS-2130"] }
+            ]
+        },
+        {
+            semester: "VII CICLO",
+            courses: [
+                { code: "SR-II", name: "SEMINARIO DE REALIDAD NACIONAL II", credits: 2, requirements: ["SR-I"] },
+                { code: "LM-3042", name: "INGLÉS PARA ESTADÍSTICA IV", credits: 3, requirements: ["LM-3041"] },
+                { code: "OPT-", name: "OPTATIVO", credits: 3, requirements: [] },
+                { code: "XS-0128", name: "INFERENCIA BAYESIANA", credits: 4, requirements: ["XS-0125", "XS-0130", "XS-3310"] },
+                { code: "XS-0134", name: "CONSTRUCCIÓN DE INDICADORES", credits: 3, requirements: ["XS-0125", "XS-0126", "XS-0133", "XS-3130", "XS-4050"] },
+                { code: "XS-4410", name: "PRÁCTICA PROFESIONAL I", credits: 3, requirements: ["XS-0125", "XS-0126", "XS-0131", "XS-0133", "XS-3130", "XS-3310", "XS-4050"] }
+            ]
+        },
+        {
+            semester: "VIII CICLO",
+            courses: [
+                { code: "XS-4430", name: "PRÁCTICA PROFESIONAL II", credits: 4, requirements: ["XS-0128", "XS-0134", "XS-4410"] },
+                { code: "XS-0132", name: "MÉTODOS PARA CIENCIA DE DATOS", credits: 4, requirements: ["XS-0126"] },
+                { code: "XS-0127", name: "ANÁLISIS DE SERIES TEMPORALES", credits: 4, requirements: ["XS-0126", "XS-3310"] },
+                { code: "OPT-", name: "OPTATIVO", credits: 6, requirements: [] }
+            ]
         }
-        localStorage.setItem('completedCourses', JSON.stringify(completedCourses));
+    ];
+
+    // Estado de los cursos (aprobados o no)
+    let coursesState = {};
+    const totalCourses = curriculumData.reduce((acc, semester) => acc + semester.courses.length, 0);
+    
+    // Elementos del DOM
+    const semestersContainer = document.querySelector('.semesters-container');
+    const resetBtn = document.getElementById('reset-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+
+    // Inicializar la malla curricular
+    function initCurriculum() {
+        // Cargar estado guardado o inicializar uno nuevo
+        const savedState = localStorage.getItem('coursesState');
+        if (savedState) {
+            coursesState = JSON.parse(savedState);
+        } else {
+            curriculumData.forEach(semester => {
+                semester.courses.forEach(course => {
+                    coursesState[course.code] = false;
+                });
+            });
+        }
+
+        renderCurriculum();
         updateProgress();
     }
 
-    // Actualizar barra de progreso
-    function updateProgress() {
-        let total = 0;
-        planEstudios.ciclos.forEach(c => total += c.cursos.length);
-        const percent = Math.round((completedCourses.length / total) * 100);
-        
-        const progressBar = document.getElementById('progress-bar');
-        progressBar.style.width = `${percent}%`;
-        
-        const progressText = document.getElementById('progress-text');
-        progressText.textContent = `${percent}% completado`;
-        progressText.style.color = percent > 50 ? '#fff' : '#333';
+    // Renderizar la malla curricular
+    function renderCurriculum() {
+        semestersContainer.innerHTML = '';
+
+        curriculumData.forEach(semester => {
+            const semesterElement = document.createElement('div');
+            semesterElement.className = 'semester';
+
+            const semesterHeader = document.createElement('div');
+            semesterHeader.className = 'semester-header';
+            semesterHeader.textContent = semester.semester;
+
+            const coursesContainer = document.createElement('div');
+            coursesContainer.className = 'courses-container';
+
+            semester.courses.forEach(course => {
+                const courseElement = document.createElement('div');
+                courseElement.className = 'course';
+                
+                // Verificar si el curso está bloqueado
+                const isLocked = course.requirements.length > 0 && 
+                                !course.requirements.some(req => coursesState[req]);
+                
+                if (isLocked) {
+                    courseElement.classList.add('locked');
+                } else if (coursesState[course.code]) {
+                    courseElement.classList.add('completed');
+                }
+
+                const courseCode = document.createElement('div');
+                courseCode.className = 'course-code';
+                courseCode.textContent = course.code;
+
+                const courseName = document.createElement('div');
+                courseName.className = 'course-name';
+                courseName.textContent = course.name;
+
+                const courseCredits = document.createElement('div');
+                courseCredits.className = 'course-credits';
+                courseCredits.textContent = `Créditos: ${course.credits}`;
+
+                if (course.requirements.length > 0) {
+                    const courseRequirements = document.createElement('div');
+                    courseRequirements.className = 'course-requirements';
+                    courseRequirements.textContent = `Requisitos: ${course.requirements.join(', ')}`;
+                    courseElement.appendChild(courseRequirements);
+                }
+
+                const courseToggle = document.createElement('input');
+                courseToggle.type = 'checkbox';
+                courseToggle.className = 'course-toggle';
+                courseToggle.checked = coursesState[course.code];
+                courseToggle.disabled = isLocked;
+                
+                courseToggle.addEventListener('change', function() {
+                    coursesState[course.code] = this.checked;
+                    localStorage.setItem('coursesState', JSON.stringify(coursesState));
+                    renderCurriculum();
+                    updateProgress();
+                });
+
+                if (isLocked) {
+                    const lockIcon = document.createElement('div');
+                    lockIcon.className = 'lock-icon';
+                    lockIcon.innerHTML = '🔒';
+                    courseElement.appendChild(lockIcon);
+                }
+
+                courseElement.appendChild(courseCode);
+                courseElement.appendChild(courseName);
+                courseElement.appendChild(courseCredits);
+                courseElement.appendChild(courseToggle);
+                coursesContainer.appendChild(courseElement);
+            });
+
+            semesterElement.appendChild(semesterHeader);
+            semesterElement.appendChild(coursesContainer);
+            semestersContainer.appendChild(semesterElement);
+        });
     }
 
-    // Inicialización
-    renderAllCourses();
-    renderOptatives();
+    // Actualizar la barra de progreso
+    function updateProgress() {
+        const completedCourses = Object.values(coursesState).filter(state => state).length;
+        const progress = (completedCourses / totalCourses) * 100;
+        
+        progressBar.style.width = `${progress}%`;
+        progressText.textContent = `${Math.round(progress)}% completado`;
+    }
+
+    // Reiniciar el progreso
+    resetBtn.addEventListener('click', function() {
+        if (confirm('¿Estás seguro de que quieres reiniciar tu progreso?')) {
+            curriculumData.forEach(semester => {
+                semester.courses.forEach(course => {
+                    coursesState[course.code] = false;
+                });
+            });
+            localStorage.setItem('coursesState', JSON.stringify(coursesState));
+            renderCurriculum();
+            updateProgress();
+        }
+    });
+
+    // Inicializar la aplicación
+    initCurriculum();
 });
