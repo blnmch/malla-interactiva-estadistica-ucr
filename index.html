@@ -5,43 +5,256 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malla Curricular - Bachillerato en Estadística</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Malla Curricular de Bachillerato en Estadística</h1>
-            <h2>Código 330402 - Plan 02</h2>
-            <div class="controls">
-                <div class="progress-container">
-                    <div class="progress-bar" id="progress-bar"></div>
-                    <span id="progress-text">0% completado</span>
+        <h1>Bachillerato en Estadística</h1>
+        <p class="subtitle">Plan de estudios interactivo - Código 330402, Plan 02</p>
+        
+        <div class="info-box">
+            <p>Instrucciones: Haz clic en los cursos para marcarlos como aprobados. Los cursos se desbloquearán automáticamente cuando apruebes sus requisitos.</p>
+            <p class="total-credits">Créditos totales: <span id="total-credits">0</span> / 140</p>
+        </div>
+        
+        <!-- Primer Año -->
+        <div class="year-container">
+            <h2>Primer Año</h2>
+            
+            <div class="cycle-container">
+                <h3>I Ciclo</h3>
+                <div class="courses-grid">
+                    <div class="course" data-code="EG-" data-credits="2" data-requirements="">
+                        <div class="course-code">EG-</div>
+                        <div class="course-name">Curso de Arte</div>
+                    </div>
+                    <div class="course" data-code="EG-I" data-credits="6" data-requirements="">
+                        <div class="course-code">EG-I</div>
+                        <div class="course-name">Curso Integrado de Humanidades I</div>
+                    </div>
+                    <div class="course" data-code="MA-0001" data-credits="0" data-requirements="">
+                        <div class="course-code">MA-0001</div>
+                        <div class="course-name">Precálculo</div>
+                    </div>
+                    <div class="course" data-code="XS-0124" data-credits="4" data-requirements="">
+                        <div class="course-code">XS-0124</div>
+                        <div class="course-name">Análisis Exploratorio de Datos</div>
+                    </div>
+                    <div class="course" data-code="RP-" data-credits="3" data-requirements="">
+                        <div class="course-code">RP-</div>
+                        <div class="course-name">Repertorio</div>
+                    </div>
                 </div>
-                <button id="reset-btn"><i class="fas fa-undo"></i> Reiniciar Progreso</button>
+                <div class="subtotal">Subtotal: 15 créditos</div>
             </div>
-            <div class="info-note">
-                <p><i class="fas fa-info-circle"></i> El estudiantado debe cumplir con 300 horas de Trabajo Comunal Universitario para optar por el título de Bachiller.</p>
-            </div>
-        </header>
-
-        <main>
-            <div class="semesters-container">
-                <!-- Los ciclos se generarán dinámicamente -->
-            </div>
-        </main>
-
-        <div class="optatives-section">
-            <h3>Cursos Optativos</h3>
-            <div class="optatives-container" id="optatives-container">
-                <!-- Los optativos se generarán dinámicamente -->
+            
+            <div class="cycle-container">
+                <h3>II Ciclo</h3>
+                <div class="courses-grid">
+                    <div class="course" data-code="EF-" data-credits="0" data-requirements="">
+                        <div class="course-code">EF-</div>
+                        <div class="course-name">Actividad Deportiva</div>
+                    </div>
+                    <div class="course" data-code="EG-II" data-credits="6" data-requirements="EG-I">
+                        <div class="course-code">EG-II</div>
+                        <div class="course-name">Curso Integrado de Humanidades II</div>
+                    </div>
+                    <div class="course" data-code="MA-0155" data-credits="4" data-requirements="MA-0001">
+                        <div class="course-code">MA-0155</div>
+                        <div class="course-name">Cálculo Diferencial e Integral I</div>
+                    </div>
+                    <div class="course" data-code="MA-1004" data-credits="3" data-requirements="">
+                        <div class="course-code">MA-1004</div>
+                        <div class="course-name">Álgebra Lineal</div>
+                    </div>
+                    <div class="course" data-code="XS-1130" data-credits="4" data-requirements="XS-0124|XS-1110" data-corequisites="CA-0151|MA-0155|MA-1021">
+                        <div class="course-code">XS-1130</div>
+                        <div class="course-name">Principios de Inferencia Estadística</div>
+                    </div>
+                </div>
+                <div class="subtotal">Subtotal: 17 créditos</div>
             </div>
         </div>
-
-        <footer>
-            <p>© 2025 Malla Interactiva - Escuela de Estadística</p>
-            <p class="update-info">Actualizado 13/05/2025 por RMMZ</p>
-        </footer>
+        
+        <!-- Segundo Año -->
+        <div class="year-container">
+            <h2>Segundo Año</h2>
+            
+            <div class="cycle-container">
+                <h3>III Ciclo</h3>
+                <div class="courses-grid">
+                    <div class="course" data-code="MA-1023" data-credits="4" data-requirements="MA-1001|MA-0213|MA-1021|CA-0151|MA-0155" data-corequisites="MA-1004|CA-0252">
+                        <div class="course-code">MA-1023</div>
+                        <div class="course-name">Cálculo con Optimización</div>
+                    </div>
+                    <div class="course" data-code="SR-I" data-credits="2" data-requirements="EG-II">
+                        <div class="course-code">SR-I</div>
+                        <div class="course-name">Seminario de Realidad Nacional I</div>
+                    </div>
+                    <div class="course" data-code="XS-0122" data-credits="4" data-requirements="CA-0151|MA-1021|MA-0155,XS-1130" data-corequisites="MA-1023">
+                        <div class="course-code">XS-0122</div>
+                        <div class="course-name">Modelos Probabilísticos I</div>
+                    </div>
+                    <div class="course" data-code="XS-0129" data-credits="4" data-requirements="XS-0124">
+                        <div class="course-code">XS-0129</div>
+                        <div class="course-name">Programación para Estadística I</div>
+                    </div>
+                    <div class="course" data-code="XS-3150" data-credits="4" data-requirements="CA-0252|MA-1004,XS-1130" data-corequisites="XS-0122|XS-2310,XS-0129|XS-2210">
+                        <div class="course-code">XS-3150</div>
+                        <div class="course-name">Diseño de Experimentos</div>
+                    </div>
+                </div>
+                <div class="subtotal">Subtotal: 18 créditos</div>
+            </div>
+            
+            <div class="cycle-container">
+                <h3>IV Ciclo</h3>
+                <div class="courses-grid">
+                    <div class="course" data-code="LM-3039" data-credits="3" data-requirements="XS-1130">
+                        <div class="course-code">LM-3039</div>
+                        <div class="course-name">Inglés para Estadística I</div>
+                    </div>
+                    <div class="course" data-code="XS-0123" data-credits="4" data-requirements="MA-1023,XS-0122|XS-2310">
+                        <div class="course-code">XS-0123</div>
+                        <div class="course-name">Modelos Probabilísticos II</div>
+                    </div>
+                    <div class="course" data-code="XS-0130" data-credits="4" data-requirements="XS-0129">
+                        <div class="course-code">XS-0130</div>
+                        <div class="course-name">Programación para Estadística II</div>
+                    </div>
+                    <div class="course" data-code="XS-2130" data-credits="4" data-requirements="CA-0252|MA-1004,XS-0122|XS-2310,XS-0129|XS-2210,XS-3150|XS-2110">
+                        <div class="course-code">XS-2130</div>
+                        <div class="course-name">Modelos de Regresión Aplicados</div>
+                    </div>
+                    <div class="course" data-code="XS-3510" data-credits="3" data-requirements="XS-3150">
+                        <div class="course-code">XS-3510</div>
+                        <div class="course-name">Metodología de la Investigación Científica</div>
+                    </div>
+                </div>
+                <div class="subtotal">Subtotal: 18 créditos</div>
+            </div>
+        </div>
+        
+        <!-- Tercer Año -->
+        <div class="year-container">
+            <h2>Tercer Año</h2>
+            
+            <div class="cycle-container">
+                <h3>V Ciclo</h3>
+                <div class="courses-grid">
+                    <div class="course" data-code="LM-3040" data-credits="3" data-requirements="LM-3039">
+                        <div class="course-code">LM-3040</div>
+                        <div class="course-name">Inglés para Estadística II</div>
+                    </div>
+                    <div class="course" data-code="XS-0125" data-credits="4" data-requirements="XS-0123|XS-2330,XS-2130,XS-3150" data-corequisites="XS-3310">
+                        <div class="course-code">XS-0125</div>
+                        <div class="course-name">Modelos Lineales Avanzados</div>
+                    </div>
+                    <div class="course" data-code="XS-0133" data-credits="3" data-requirements="XS-2130">
+                        <div class="course-code">XS-0133</div>
+                        <div class="course-name">Introducción a la Demografía y Bioestadística</div>
+                    </div>
+                    <div class="course" data-code="XS-3110" data-credits="4" data-requirements="XS-0123|XS-2330,XS-0129|XS-2210,XS-3510">
+                        <div class="course-code">XS-3110</div>
+                        <div class="course-name">Diseños de Muestreo Probabilístico</div>
+                    </div>
+                    <div class="course" data-code="XS-3310" data-credits="4" data-requirements="XS-0123|XS-2330">
+                        <div class="course-code">XS-3310</div>
+                        <div class="course-name">Teoría Estadística</div>
+                    </div>
+                </div>
+                <div class="subtotal">Subtotal: 18 créditos</div>
+            </div>
+            
+            <div class="cycle-container">
+                <h3>VI Ciclo</h3>
+                <div class="courses-grid">
+                    <div class="course" data-code="LM-3041" data-credits="3" data-requirements="LM-3040,XS-2130">
+                        <div class="course-code">LM-3041</div>
+                        <div class="course-name">Inglés para Estadística III</div>
+                    </div>
+                    <div class="course" data-code="XS-0126" data-credits="4" data-requirements="XS-0130|XS-2230,XS-0123|XS-2330,XS-2130">
+                        <div class="course-code">XS-0126</div>
+                        <div class="course-name">Minería de Datos y Análisis Multivariado</div>
+                    </div>
+                    <div class="course" data-code="XS-0131" data-credits="4" data-requirements="XS-0130|XS-2230">
+                        <div class="course-code">XS-0131</div>
+                        <div class="course-name">Gestión de Bases de Datos y Análisis de Información</div>
+                    </div>
+                    <div class="course" data-code="XS-3130" data-credits="4" data-requirements="XS-3110" data-corequisites="XS-4050">
+                        <div class="course-code">XS-3130</div>
+                        <div class="course-name">Diseño y Ejecución de Encuestas por Muestreo</div>
+                    </div>
+                    <div class="course" data-code="XS-4050" data-credits="3" data-requirements="XS-0130|XS-2230,XS-0123|XS-2330,XS-2130" data-corequisites="XS-0126">
+                        <div class="course-code">XS-4050</div>
+                        <div class="course-name">Técnicas de Medición para Estadística</div>
+                    </div>
+                </div>
+                <div class="subtotal">Subtotal: 18 créditos</div>
+            </div>
+        </div>
+        
+        <!-- Cuarto Año -->
+        <div class="year-container">
+            <h2>Cuarto Año</h2>
+            
+            <div class="cycle-container">
+                <h3>VII Ciclo</h3>
+                <div class="courses-grid">
+                    <div class="course" data-code="SR-II" data-credits="2" data-requirements="SR-I">
+                        <div class="course-code">SR-II</div>
+                        <div class="course-name">Seminario de Realidad Nacional II</div>
+                    </div>
+                    <div class="course" data-code="LM-3042" data-credits="3" data-requirements="LM-3041">
+                        <div class="course-code">LM-3042</div>
+                        <div class="course-name">Inglés para Estadística IV</div>
+                    </div>
+                    <div class="course elective" data-code="OPT-" data-credits="3" data-requirements="">
+                        <div class="course-code">OPT-</div>
+                        <div class="course-name">Optativo</div>
+                    </div>
+                    <div class="course" data-code="XS-0128" data-credits="4" data-requirements="XS-0125|XS-3170,XS-0130|XS-2230,XS-3310">
+                        <div class="course-code">XS-0128</div>
+                        <div class="course-name">Inferencia Bayesiana</div>
+                    </div>
+                    <div class="course" data-code="XS-0134" data-credits="3" data-requirements="XS-0125,XS-0126,XS-0133|XS-3010,XS-3130,XS-4050">
+                        <div class="course-code">XS-0134</div>
+                        <div class="course-name">Construcción de Indicadores</div>
+                    </div>
+                    <div class="course" data-code="XS-4410" data-credits="3" data-requirements="XS-0125|XS-3170,XS-0126|XS-4110,XS-0131|XS-3210,XS-0133|XS-3010,XS-3130,XS-3310,XS-4050" data-corequisites="XS-0134">
+                        <div class="course-code">XS-4410</div>
+                        <div class="course-name">Práctica Profesional I</div>
+                    </div>
+                </div>
+                <div class="subtotal">Subtotal: 18 créditos</div>
+            </div>
+            
+            <div class="cycle-container">
+                <h3>VIII Ciclo</h3>
+                <div class="courses-grid">
+                    <div class="course" data-code="XS-4430" data-credits="4" data-requirements="XS-0128,XS-0134|XS-4010,XS-4410" data-corequisites="XS-0127,XS-0132">
+                        <div class="course-code">XS-4430</div>
+                        <div class="course-name">Práctica Profesional II</div>
+                    </div>
+                    <div class="course" data-code="XS-0132" data-credits="4" data-requirements="XS-0126|XS-4110">
+                        <div class="course-code">XS-0132</div>
+                        <div class="course-name">Métodos para Ciencia de Datos</div>
+                    </div>
+                    <div class="course" data-code="XS-0127" data-credits="4" data-requirements="XS-0126,XS-3310">
+                        <div class="course-code">XS-0127</div>
+                        <div class="course-name">Análisis de Series Temporales</div>
+                    </div>
+                    <div class="course elective" data-code="OPT-" data-credits="6" data-requirements="">
+                        <div class="course-code">OPT-</div>
+                        <div class="course-name">Optativo</div>
+                    </div>
+                </div>
+                <div class="subtotal">Subtotal: 18 créditos</div>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <p><strong>Nota:</strong> El estudiantado debe cumplir con 300 horas de Trabajo Comunal Universitario para optar por el título de Bachiller.</p>
+        </div>
     </div>
 
     <script src="script.js"></script>
