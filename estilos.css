@@ -1,50 +1,191 @@
+:root {
+    --primary: #a8d8ea;
+    --secondary: #aa96da;
+    --accent: #fcbad3;
+    --background: #ffffd2;
+    --text: #333;
+    --completed: #c7f0db;
+    --available: #f8dc88;
+    --locked: #f5c2c2;
+    --border: #d1d1d1;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #fefefe;
-  margin: 20px;
-  padding: 0;
-  color: #333;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
 }
 
-h1 {
-  text-align: center;
-  color: #666;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.malla {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 15px;
-  max-width: 1200px;
-  margin: auto;
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--primary);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.curso {
-  background-color: #d6eaf8; /* azul pastel */
-  border: 2px solid #aed6f1;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  font-size: 14px;
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.2s ease;
+h1, h2 {
+    color: var(--secondary);
 }
 
-.curso:hover {
-  background-color: #a9d0f5;
+.progress-container {
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.curso.aprobado {
-  text-decoration: line-through;
-  background-color: #d5f5e3; /* verde pastel */
-  border-color: #abebc6;
-  color: #555;
+.progress-bar {
+    height: 20px;
+    background-color: var(--accent);
+    border-radius: 10px;
+    width: 0%;
+    transition: width 0.5s ease;
+    margin-bottom: 5px;
 }
 
-.curso.bloqueado {
-  background-color: #f9ebea; /* rojo pastel */
-  border-color: #f5b7b1;
-  color: #aaa;
-  pointer-events: none;
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.ciclo {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ciclo h2 {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--secondary);
+}
+
+.course {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.course:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.course.completed {
+    background-color: var(--completed);
+    text-decoration: line-through;
+}
+
+.course.available {
+    background-color: var(--available);
+}
+
+.course.locked {
+    background-color: var(--locked);
+    cursor: not-allowed;
+}
+
+.course-code {
+    font-weight: bold;
+    color: var(--secondary);
+}
+
+.course-name {
+    margin: 5px 0;
+}
+
+.course-credits {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.course-requirements {
+    font-size: 0.8em;
+    margin-top: 5px;
+    color: #555;
+}
+
+.electives-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.electives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.elective {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.elective:hover {
+    transform: scale(1.02);
+}
+
+.elective.completed {
+    background-color: var(--completed);
+    text-decoration: line-through;
+}
+
+.notes {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Animaciones */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.course.completed {
+    animation: bounce 0.5s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .electives-grid {
+        grid-template-columns: 1fr;
+    }
 }
