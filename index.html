@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Curricular - Bachillerato en Estadística</title>
+    <title>Malla Curricular - Enfermería</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>Malla Curricular Interactiva</h1>
-        <h2>Bachillerato en Estadística</h2>
-        <div class="controls">
-            <button id="reset-btn">Reiniciar Progreso</button>
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-                <span id="progress-text">0% completado</span>
+    <div class="container">
+        <header>
+            <h1>Malla Curricular de Enfermería</h1>
+            <div class="controls">
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                    <span id="progress-text">0% completado</span>
+                </div>
+                <button id="reset-btn"><i class="fas fa-undo"></i> Reiniciar</button>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <main>
-        <div class="semesters-container">
-            <!-- Los semestres se generarán dinámicamente con JavaScript -->
-        </div>
-    </main>
+        <main>
+            <div class="semesters-container">
+                <!-- Semestres se generarán dinámicamente -->
+            </div>
+        </main>
 
-    <footer>
-        <p>© 2025 Malla Interactiva - Bachillerato en Estadística</p>
-    </footer>
+        <footer>
+            <p>© 2025 Malla Interactiva - Escuela de Enfermería</p>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
