@@ -6,9 +6,10 @@
     --text-color: #333;
     --text-light: #666;
     --border-color: #ddd;
-    --completed-color: #4caf50;
-    --unlocked-color: #8bc34a;
+    --completed-color: #2e7d32;
+    --unlocked-color: #0288d1;
     --locked-color: #e0e0e0;
+    --hover-color: #bbdefb;
 }
 
 * {
@@ -51,6 +52,9 @@ h2 {
     margin: 20px 0 15px;
     padding-bottom: 10px;
     border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .progress-container {
@@ -79,44 +83,67 @@ h2 {
     font-size: 12px;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+.semesters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.ciclo {
+.semester {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 15px;
+    padding: 0;
     border: 1px solid var(--border-color);
 }
 
-.ciclo-header {
+.semester-header {
     background-color: var(--primary-color);
     color: white;
-    padding: 10px;
-    margin: -15px -15px 15px -15px;
+    padding: 12px 15px;
     border-radius: 8px 8px 0 0;
-    text-align: center;
     font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.courses-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 15px;
 }
 
 .curso {
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    padding: 12px;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
     border: 1px solid var(--border-color);
     position: relative;
+    background-color: white;
 }
 
 .curso.completed {
     background-color: var(--completed-color);
     color: white;
     border-color: var(--completed-color);
+}
+
+.curso.completed::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: white;
+    transform: rotate(-5deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.curso.completed.active::after {
+    opacity: 1;
 }
 
 .curso.unlocked {
@@ -134,43 +161,50 @@ h2 {
 .curso:hover:not(.locked) {
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--hover-color);
+}
+
+.curso:active:not(.locked) {
+    transform: scale(0.98);
 }
 
 .curso-code {
     font-weight: 500;
     margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .curso-name {
-    font-size: 14px;
+    font-size: 13px;
     margin-bottom: 5px;
 }
 
 .curso-credits {
-    font-size: 12px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    font-size: 11px;
     background-color: rgba(255, 255, 255, 0.2);
     padding: 2px 6px;
     border-radius: 10px;
 }
 
-.curso-requisitos {
-    font-size: 12px;
-    margin-top: 5px;
-    padding-top: 5px;
-    border-top: 1px dashed rgba(255, 255, 255, 0.5);
-}
-
 .optatives-section {
     margin-top: 40px;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    border: 1px solid var(--primary-light);
 }
 
 .optatives-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
+    margin-top: 15px;
+}
+
+.curso.optativo {
+    background-color: #e6f7ff;
+    border-left: 4px solid var(--primary-color);
 }
 
 .notes {
@@ -183,32 +217,7 @@ h2 {
 }
 
 @media (max-width: 768px) {
-    .grid-container {
+    .courses-list, .optatives-container {
         grid-template-columns: 1fr;
     }
-    
-    .optatives-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Estilos para la sección de optativos */
-.optatives-section {
-    margin-top: 40px;
-    padding: 20px;
-    background-color: #f0f8ff;
-    border-radius: 8px;
-    border: 1px solid var(--primary-light);
-}
-
-.optatives-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.curso.optativo {
-    background-color: #e6f7ff;
-    border-left: 4px solid var(--primary-color);
 }
