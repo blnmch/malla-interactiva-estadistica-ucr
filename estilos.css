@@ -1,15 +1,21 @@
 :root {
-    --primary-color: #1976d2;
-    --primary-light: #63a4ff;
-    --primary-dark: #004ba0;
+    --primary-color: #4a6baf;
+    --primary-light: #7d9fd9;
+    --primary-dark: #2c4373;
     --secondary-color: #f5f5f5;
     --text-color: #333;
     --text-light: #666;
     --border-color: #ddd;
-    --completed-color: #2e7d32;
-    --unlocked-color: #0288d1;
+    --completed-color: #4caf50;
+    --unlocked-color: #ff9800;
     --locked-color: #e0e0e0;
-    --hover-color: #bbdefb;
+    --hover-color: #e3f2fd;
+    --optative-color: #9c27b0;
+    --humanities-color: #3f51b5;
+    --math-color: #f44336;
+    --stats-color: #009688;
+    --english-color: #795548;
+    --seminar-color: #607d8b;
 }
 
 * {
@@ -108,7 +114,7 @@ h2 {
 
 .courses-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 10px;
     padding: 15px;
 }
@@ -123,10 +129,17 @@ h2 {
     background-color: white;
 }
 
+/* Colores por tipo de curso */
+.curso[data-code^="EG-"] { background-color: var(--humanities-color); color: white; }
+.curso[data-code^="MA-"] { background-color: var(--math-color); color: white; }
+.curso[data-code^="XS-"] { background-color: var(--stats-color); color: white; }
+.curso[data-code^="LM-"] { background-color: var(--english-color); color: white; }
+.curso[data-code^="SR-"] { background-color: var(--seminar-color); color: white; }
+.curso[data-code^="OPT"] { background-color: var(--optative-color); color: white; }
+
 .curso.completed {
-    background-color: var(--completed-color);
-    color: white;
-    border-color: var(--completed-color);
+    opacity: 0.8;
+    position: relative;
 }
 
 .curso.completed::after {
@@ -147,25 +160,23 @@ h2 {
 }
 
 .curso.unlocked {
-    background-color: var(--unlocked-color);
-    color: white;
-    border-color: var(--unlocked-color);
+    box-shadow: 0 0 0 2px var(--unlocked-color);
 }
 
 .curso.locked {
     background-color: var(--locked-color);
     color: var(--text-light);
     cursor: not-allowed;
+    opacity: 0.6;
 }
 
 .curso:hover:not(.locked) {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: var(--hover-color);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .curso:active:not(.locked) {
-    transform: scale(0.98);
+    transform: scale(0.95) translateY(-3px);
 }
 
 .curso-code {
@@ -182,29 +193,37 @@ h2 {
 
 .curso-credits {
     font-size: 11px;
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 2px 6px;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 2px 8px;
     border-radius: 10px;
+    font-weight: bold;
+}
+
+.curso-requisitos {
+    font-size: 11px;
+    margin-top: 8px;
+    padding-top: 5px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.5);
 }
 
 .optatives-section {
     margin-top: 40px;
     padding: 20px;
-    background-color: #f0f8ff;
+    background-color: #f3e5f5;
     border-radius: 8px;
-    border: 1px solid var(--primary-light);
+    border: 1px solid var(--optative-color);
 }
 
 .optatives-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 15px;
     margin-top: 15px;
 }
 
 .curso.optativo {
-    background-color: #e6f7ff;
-    border-left: 4px solid var(--primary-color);
+    background-color: #e1bee7;
+    border-left: 4px solid var(--optative-color);
 }
 
 .notes {
@@ -214,6 +233,33 @@ h2 {
     border-radius: 5px;
     font-size: 14px;
     color: var(--text-light);
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 
 @media (max-width: 768px) {
